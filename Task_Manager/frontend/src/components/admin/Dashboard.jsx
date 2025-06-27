@@ -136,13 +136,13 @@ const Dashboard = () => {
       const token = localStorage.getItem("token");
 
       const [userRes, adminRes, taskRes] = await Promise.all([
-        axios.get("http://localhost:6969/user/getALL", {
+        axios.get("https://task-manager-qs6z.onrender.com/user/getALL", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get("http://localhost:6969/user/getAdmin", {
+        axios.get("https://task-manager-qs6z.onrender.com/user/getAdmin", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get("http://localhost:6969/task/getAll", {
+        axios.get("https://task-manager-qs6z.onrender.com/task/getAll", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);

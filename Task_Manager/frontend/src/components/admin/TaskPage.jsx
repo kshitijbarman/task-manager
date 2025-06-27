@@ -40,7 +40,7 @@
 //         },
 //         data: { taskId },
 //       });
-//       fetchTasks(); 
+//       fetchTasks();
 //     } catch (err) {
 //       console.error("Error deleting task:", err);
 //     }
@@ -152,13 +152,6 @@
 
 // export default TaskPage;
 
-
-
-
-
-
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -172,11 +165,14 @@ const TaskPage = () => {
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:6969/task/getAll", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://task-manager-qs6z.onrender.com/task/getAll",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const allTasks = res.data;
 
@@ -195,13 +191,13 @@ const TaskPage = () => {
   const handleDelete = async (taskId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:6969/task/delete`, {
+      await axios.delete(`https://task-manager-qs6z.onrender.com/task/delete`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         data: { taskId },
       });
-      fetchTasks(); 
+      fetchTasks();
     } catch (err) {
       console.error("Error deleting task:", err);
     }
@@ -223,21 +219,45 @@ const TaskPage = () => {
 
       {/* Total Tasks */}
       <div className="bg-white m-6 p-6 rounded-lg shadow-md border-l-8 border-indigo-600">
-        <h2 className="text-2xl font-bold text-indigo-700 mb-2">📊 Total Tasks: {tasks.length}</h2>
+        <h2 className="text-2xl font-bold text-indigo-700 mb-2">
+          📊 Total Tasks: {tasks.length}
+        </h2>
       </div>
 
       {/* Task Sections */}
-      <TaskBox title="🕒 Pending Tasks" color="amber-600" tasks={pendingTasks} handleDelete={handleDelete} />
-      <TaskBox title="🚧 In Progress Tasks" color="blue-600" tasks={inProgressTasks} handleDelete={handleDelete} />
-      <TaskBox title="✅ Completed Tasks" color="green-600" tasks={completedTasks} handleDelete={handleDelete} />
-      <TaskBox title="❌ Cancelled Tasks" color="red-600" tasks={cancelledTasks} handleDelete={handleDelete} />
+      <TaskBox
+        title="🕒 Pending Tasks"
+        color="amber-600"
+        tasks={pendingTasks}
+        handleDelete={handleDelete}
+      />
+      <TaskBox
+        title="🚧 In Progress Tasks"
+        color="blue-600"
+        tasks={inProgressTasks}
+        handleDelete={handleDelete}
+      />
+      <TaskBox
+        title="✅ Completed Tasks"
+        color="green-600"
+        tasks={completedTasks}
+        handleDelete={handleDelete}
+      />
+      <TaskBox
+        title="❌ Cancelled Tasks"
+        color="red-600"
+        tasks={cancelledTasks}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };
 
 const TaskBox = ({ title, color, tasks, handleDelete }) => (
   <div className="bg-white m-6 p-6 rounded-lg shadow-md">
-    <h2 className={`text-xl font-semibold text-${color} mb-4`}>{title} ({tasks.length})</h2>
+    <h2 className={`text-xl font-semibold text-${color} mb-4`}>
+      {title} ({tasks.length})
+    </h2>
     {tasks.length === 0 ? (
       <p className="text-gray-500">No tasks found.</p>
     ) : (

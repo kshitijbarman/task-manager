@@ -178,11 +178,14 @@ const UserPage = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:6969/user/getALL", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://task-manager-qs6z.onrender.com/user/getALL",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const allUsers = res.data.filter((user) => user.role === "user");
 
@@ -197,11 +200,14 @@ const UserPage = () => {
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:6969/task/getAll", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://task-manager-qs6z.onrender.com/task/getAll",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setTasks(res.data);
     } catch (err) {
       console.error("Error fetching tasks:", err);
@@ -213,7 +219,7 @@ const UserPage = () => {
   const handleDelete = async (taskId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("http://localhost:6969/user/delete", {
+      await axios.delete("https://task-manager-qs6z.onrender.com/user/delete", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -230,7 +236,7 @@ const UserPage = () => {
       const token = localStorage.getItem("token");
 
       await axios.patch(
-        "http://localhost:6969/user/active",
+        "https://task-manager-qs6z.onrender.com/user/active",
         { taskId },
         {
           headers: {

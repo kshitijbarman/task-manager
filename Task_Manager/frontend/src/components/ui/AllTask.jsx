@@ -393,7 +393,7 @@ const AllTask = () => {
   const fetchUserTasks = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:6969/task/getAll", {
+      const res = await axios.get("https://task-manager-qs6z.onrender.com/task/getAll", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTasks(res.data);
@@ -407,7 +407,7 @@ const AllTask = () => {
   const handleDelete = async (taskId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("http://localhost:6969/task/delete", {
+      await axios.delete("https://task-manager-qs6z.onrender.com/task/delete", {
         headers: { Authorization: `Bearer ${token}` },
         data: { taskId },
       });
@@ -437,7 +437,7 @@ const AllTask = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:6969/task/update`,
+        `https://task-manager-qs6z.onrender.com/task/update`,
         { taskId, status: "completed" },
         {
           headers: { Authorization: `Bearer ${token}` },

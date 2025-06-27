@@ -15,7 +15,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     if (activePage === "allTasks") {
       axios
-        .get("/api/tasks")
+        .get("https://task-manager-qs6z.onrender.com/api/tasks")
         .then((res) => setTasks(res.data.tasks))
         .catch((err) => console.error("Error fetching tasks:", err));
     }

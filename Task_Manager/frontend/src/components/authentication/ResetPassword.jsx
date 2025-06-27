@@ -22,7 +22,7 @@ const ResetPassword = () => {
     }
     try {
       const res = await axios.post(
-        "http://localhost:6969/user/reset",
+        "https://task-manager-qs6z.onrender.com/user/reset",
         formData
       );
       alert("Password Reset successfully...");

@@ -189,7 +189,7 @@ const AddTask = () => {
     }
 
     try {
-      await axios.post("http://localhost:6969/task/add-task", formData, {
+      await axios.post("https://task-manager-qs6z.onrender.com/task/add-task", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -218,7 +218,7 @@ const AddTask = () => {
   const fetchAllUsers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:6969/user/getAll", {
+      const res = await axios.get("https://task-manager-qs6z.onrender.com/user/getAll", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAllUsers(res.data.filter((u) => u._id !== getCurrentUserId()));

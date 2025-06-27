@@ -29,7 +29,10 @@ const SignUp = () => {
     }
 
     try {
-      await axios.post("http://localhost:6969/user/signup", formData);
+      await axios.post(
+        "https://task-manager-qs6z.onrender.com/user/signup",
+        formData
+      );
       localStorage.setItem("otpEmail", formData.email);
       navigate("/verification");
     } catch (error) {

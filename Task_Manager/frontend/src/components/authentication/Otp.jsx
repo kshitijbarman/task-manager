@@ -32,7 +32,7 @@ const Otp = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:6969/user/verifyOtp", {
+      const res = await axios.post("https://task-manager-qs6z.onrender.com/user/verifyOtp", {
         email,
         otp,
       });

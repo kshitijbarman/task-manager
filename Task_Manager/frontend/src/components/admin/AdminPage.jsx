@@ -143,11 +143,6 @@
 
 // export default AdminPage;
 
-
-
-
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -159,17 +154,22 @@ const AdminPage = () => {
   const fetchAdmins = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:6969/user/getAdmin", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://task-manager-qs6z.onrender.com/user/getAdmin",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const allAdmins = res.data.filter((user) => user.role === "admin");
 
       setAdmins(allAdmins);
       setActiveAdmins(allAdmins.filter((admin) => admin.status === "active"));
-      setInactiveAdmins(allAdmins.filter((admin) => admin.status === "inactive"));
+      setInactiveAdmins(
+        allAdmins.filter((admin) => admin.status === "inactive")
+      );
     } catch (err) {
       console.error("Error fetching admins:", err);
     }
@@ -178,7 +178,7 @@ const AdminPage = () => {
   const handleDelete = async (adminId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("http://localhost:6969/user/delete", {
+      await axios.delete("https://task-manager-qs6z.onrender.com/user/delete", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -195,7 +195,7 @@ const AdminPage = () => {
       const token = localStorage.getItem("token");
 
       await axios.patch(
-        "http://localhost:6969/user/active",
+        "https://task-manager-qs6z.onrender.com/user/active",
         { taskId: adminId },
         {
           headers: {

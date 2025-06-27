@@ -23,7 +23,7 @@ const ForgetPassword = () => {
       const token = localStorage.getItem("token");
       console.log(token);
       const res = await axios.post(
-        "http://localhost:6969/user/forget",
+        "https://task-manager-qs6z.onrender.com/user/forget",
         {
           headers: { Authorization: `Bearer ${token}` },
         },
